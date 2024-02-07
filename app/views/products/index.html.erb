@@ -11,7 +11,13 @@
     <li>
       <%= image_tag(product.image_url, class: "rounded", style: "width: 100px; height: 100px") %>
       <div>
-        
+        <h2><%= product.title %></h2>
+        <p>
+          <%= sanitize(product.description) %>
+        </p>
+      </div>
+      <div>
+        <%= number_to_currency(product.price) %>
       </div>
     </li>
   <% end %>
