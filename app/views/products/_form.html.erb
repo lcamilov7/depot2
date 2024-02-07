@@ -1,0 +1,11 @@
+<div class="container">
+  <%= simple_form_for product, html: {class: "form"} do |f| %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :price %>
+    <%= f.input :image_url %>
+
+    <%= f.submit product.new_record? ? "Create" : "Update" %>
+    <%= link_to "Back", products_url %>
+  <% end %>
+</div>

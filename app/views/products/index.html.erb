@@ -1,24 +1,47 @@
-<div>
+<div style="width: 100%;">
   <% if notice.present? %>
-  <p>
-    <%= notice %>
-  </p>
+    <p class="py-3 px-3 mb-5" id="notice">
+      <% notice %>
+    </p>
   <% end %>
+  <div class="d-flex justify-content-between align-items-center pb-4">
+    <h1 class="mx-auto text-lg">Products</h1>
+  </div>
+  <table class="mx-auto" id="products">
+    <tfoot>
+      <tr>
+        <td colspan="3">
+          <div class="mt-4">
+          <%= link_to "New product", new_product_path, class: "rounded inline py-1 px-2 btn btn-success" %>
+          </div>
+        </td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr style="<%= cycle("background-color: #F0FDF4;", "background-color: #FFFFFF") %>">
+          <td class="px-2 py-3">
+            <%= image_tag(product.image_url, style: "width: 150px; height: 200px;") %>
+          </td>
+          <td>
+            <h2 class="fs-5"><%= product.title %></h2>
+            <p><%= truncate(strip_tags(product.description), length: 80) %></p>
+          </td>
+          <td class="px-3">
+            <ul style="list-style-type: none;">
+              <li>
+                <%= link_to "Show", product_url(product) %>
+              </li>
+              <li>
+                <%= link_to "Edit", edit_product_url(product) %>
+              </li>
+              <li>
+                <%= link_to "Destroy", product_url(product), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-<h1>Yor pragmatic Catalog</h1>
-<ul style="list-style-type: none;">
-  <% @products.each do |product| %>
-    <li>
-      <%= image_tag(product.image_url, class: "rounded", style: "width: 100px; height: 100px") %>
-      <div>
-        <h2><%= product.title %></h2>
-        <p>
-          <%= sanitize(product.description) %>
-        </p>
-      </div>
-      <div>
-        <%= number_to_currency(product.price) %>
-      </div>
-    </li>
-  <% end %>
-</ul>
