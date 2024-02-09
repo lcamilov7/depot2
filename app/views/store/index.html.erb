@@ -16,6 +16,7 @@
               <p><%= sanitize(product.description) %></p>
               <div class="mt-4">
                 <%= number_to_currency(product.price) %>
+                <%= button_to 'Add to Cart', product_line_items_path(product), form_class: 'inline', class: 'btn btn-success mt-2' %>
               </div>
             </div>
           </li>

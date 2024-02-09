@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'store/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -8,5 +7,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "store#index"
-  resources :products
+  resources :products do
+    resources :line_items, only: :create
+  end
+  resources :line_items, only: :destroy
 end
