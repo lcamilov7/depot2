@@ -11,4 +11,5 @@ Rails.application.routes.draw do
     resources :line_items, only: :create
   end
   resources :line_items, only: :destroy
+  resources :carts, only: %i[show]
 end

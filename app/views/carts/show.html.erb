@@ -1,0 +1,10 @@
+<div class="flex-column">
+  <p style="color: green"><%= notice %></p>
+
+  <% @cart.line_items.each do |line_item| %>
+    <p><%= line_item.product.title %></p>
+  <% end %>
+  <div>
+    <%= link_to "Back to products", root_path %>
+  </div>
+</div>
