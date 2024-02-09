@@ -4,19 +4,19 @@
       <% notice %>
     </p>
   <% end %>
-  <div class="d-flex justify-content-between align-items-center pb-4">
+  <div class="d-flex justify-content-between align-items-center pb-2">
     <h1 class="mx-auto text-lg">Products</h1>
   </div>
-  <table class="mx-auto" id="products">
-    <tfoot>
+  <table class="mx-auto mb-4" id="products">
+    <thead>
       <tr>
         <td colspan="3">
           <div class="mt-4">
-          <%= link_to "New product", new_product_path, class: "rounded inline py-1 px-2 btn btn-success" %>
+          <%= link_to "New product", new_product_path, class: "rounded inline py-1 px-2 btn btn-success my-2" %>
           </div>
         </td>
       </tr>
-    </tfoot>
+    </thead>
     <tbody>
       <% @products.each do |product| %>
         <tr style="<%= cycle("background-color: #F0FDF4;", "background-color: #FFFFFF") %>">
