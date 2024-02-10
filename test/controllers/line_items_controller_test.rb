@@ -9,6 +9,6 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
 
     follow_redirect!
     assert_select 'h2', 'Your Pragmatic Cart'
-    assert_select 'p', 'Programming Ruby 1.9'
+    assert_select 'p', "1 \u00D7 Programming Ruby 1.9"
   end
 end

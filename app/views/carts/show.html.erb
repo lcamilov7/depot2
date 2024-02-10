@@ -2,10 +2,9 @@
   <p style="color: green"><%= notice %></p>
   <h2>Your Pragmatic Cart</h2>
   <% @cart.line_items.each do |line_item| %>
-    <p><%= line_item.product.title %></p>
+    <p><%= line_item.quantity %> &times; <%= line_item.product.title %></p>
   <% end %>
   <div>
     <%= link_to "Back to products", root_path %>
   </div>
 </div>
-<%= console %>
