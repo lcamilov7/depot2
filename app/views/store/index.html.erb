@@ -1,7 +1,12 @@
 <div style="width: 100%;">
   <% if notice.present? %>
     <p class="py-3 px-3 mb-5" id="notice">
-      <% notice %>
+      <%= notice %>
+    </p>
+  <% end %>
+  <% if session[:counter] > 5%>
+    <p class="text-secondary fs-7">
+      <%= "You have checked the store catalog #{session[:counter]} #{"time".pluralize(session[:counter])}" %>
     </p>
   <% end %>
   <h1 class="mb-3 pb-2 border-bottom">Your pragmatic catalog</h1>

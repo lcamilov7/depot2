@@ -16,6 +16,7 @@ class LineItemsController < ApplicationController
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
     end
+    session[:counter] = 0
   end
 
   def destroy
