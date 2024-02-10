@@ -1,6 +1,6 @@
 <div class="flex-column">
   <p style="color: green"><%= notice %></p>
-
+  <h2>Your Pragmatic Cart</h2>
   <% @cart.line_items.each do |line_item| %>
     <p><%= line_item.product.title %></p>
   <% end %>
