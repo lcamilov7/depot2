@@ -7,7 +7,11 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+puts 'Destroying models'
 Product.destroy_all
+LineItem.destroy_all
+Cart.destroy_all
+puts 'Models destroyed'
 # . . .
 Product.create!(title: 'Design and Build Great Web APIs',
   description:
