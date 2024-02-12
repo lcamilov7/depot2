@@ -5,6 +5,7 @@
     <p><%= line_item.quantity %> &times; <%= line_item.product.title %></p>
   <% end %>
   <div>
+    <%= link_to "Empty cart", cart_delete_path, class: "link-success", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
     <%= link_to "Back to products", root_path %>
   </div>
 </div>
