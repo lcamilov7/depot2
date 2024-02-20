@@ -1,10 +1,23 @@
 <div class="flex-column">
   <p style="color: green"><%= notice %></p>
   <h2>Your Pragmatic Cart</h2>
-  <% @cart.line_items.each do |line_item| %>
-    <p><%= line_item.quantity %> &times; <%= line_item.product.title %></p>
-  <% end %>
-  <div>
+  <table>
+    <% @cart.line_items.each do |item| %>
+      <tr>
+        <td><%= item.quantity %></td>
+        <td>&times;</td>
+        <td><%= item.product.title %></td>
+        <td><%= number_to_currency(item.total_price) %></td>
+      </tr>
+    <% end %>
+
+    <tfoot>
+      <tr>
+        <th>Total:</th>
+        <td><%= number_to_currency(@cart.total_price) %></td>
+      </tr>
+    </tfoot>
+  </table>
     <%= link_to "Empty cart", cart_delete_path, class: "link-success", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
     <%= link_to "Back to products", root_path %>
   </div>

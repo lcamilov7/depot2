@@ -2,8 +2,7 @@ class CartsController < ApplicationController
   before_action :set_cart, only: %i[show destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
-  def show
-  end
+  def show; end
 
   def destroy
     @cart.destroy if @cart.id == session[:cart_id]
@@ -23,6 +22,6 @@ class CartsController < ApplicationController
 
   def invalid_cart
     logger.error "Attempt to access invalid cart #{params[:id]}"
-    redirect_to root_path, notice: "Error: Invalid cart"
+    redirect_to root_path, notice: 'Error: Invalid cart'
   end
 end
