@@ -13,6 +13,7 @@ class Cart < ApplicationRecord
   end
 
   def total_price
+    # Iteracion para sumar
     self.line_items.sum { |item| item.total_price }
   end
 end
