@@ -2,7 +2,7 @@
   <p style="color: green"><%= notice %></p>
   <h2>Your Pragmatic Cart</h2>
   <table>
-    <% @cart.line_items.each do |item| %>
+    <% @line_items.each do |item| %>
       <tr>
         <td><%= item.quantity %></td>
         <td>&times;</td>
@@ -24,4 +24,3 @@
     <%= link_to "Back to products", root_path %>
   </div>
 </div>
-<%= console %>

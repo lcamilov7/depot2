@@ -2,7 +2,9 @@ class CartsController < ApplicationController
   before_action :set_cart, only: %i[show destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
-  def show; end
+  def show
+    @line_items = @cart.line_items.order('id ASC')
+  end
 
   def destroy
     @cart.destroy if @cart.id == session[:cart_id]
