@@ -1,6 +1,6 @@
 class LineItemsController < ApplicationController
   include CurrentCart
-  before_action :set_cart, only: :create
+  before_action :set_cart, only: %i[create destroy]
 
   def create
     product = Product.find(params[:product_id])
@@ -24,10 +24,20 @@ class LineItemsController < ApplicationController
     if @line_item.quantity > 1
       @line_item.quantity -= 1
       @line_item.save
-      redirect_to cart_url(@line_item.cart)
+      redirect_to cart_url(@cart)
     else
       @line_item.destroy
-      redirect_to products_url
+      if @cart.line_items.empty?
+        @cart.destroy if @cart.id == session[:cart_id]
+        session[:cart_id] = nil
+
+        respond_to do |format|
+          format.html { redirect_to root_url, notice: 'Your cart is now empty' }
+          format.json { head :no_content }
+        end
+      else
+        redirect_to cart_url(@cart)
+      end
     end
   end
 end
