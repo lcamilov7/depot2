@@ -3,7 +3,11 @@ class CartsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
   def show
-    @line_items = @cart.line_items.order('id ASC')
+    if @cart.id != session[:cart_id]
+      redirect_to root_path, notice: 'Unauthorized cart'
+    else
+      @line_items = @cart.line_items.order('id ASC')
+    end
   end
 
   def destroy
