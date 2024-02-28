@@ -20,5 +20,14 @@ class LineItemsController < ApplicationController
   end
 
   def destroy
+    @line_item = LineItem.find(params[:id])
+    if @line_item.quantity > 1
+      @line_item.quantity -= 1
+      @line_item.save
+      redirect_to cart_url(@line_item.cart)
+    else
+      @line_item.destroy
+      redirect_to products_url
+    end
   end
 end
