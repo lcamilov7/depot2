@@ -17,9 +17,11 @@
     </header>
     <section class="d-flex m-0" style="min-height: 100vh;">
       <nav style="background-color: #104326;" class="p-4 altura">
-        <div style="overflow-y: scroll; background-color: white; height: 400px; scrollbar-color: #126630 #F0FDF4; scrollbar-width: thin" class="p-2 rounded">
+        <% if @cart and not @cart.line_items.empty? %>
+        <div style="overflow-y: scroll; background-color: white; height: 300px; scrollbar-color: #126630 #F0FDF4; scrollbar-width: thin; min-width: 300px; " class="p-2 rounded">
           <%= render @cart %>
         </div>
+        <% end %>
         <ul style="list-style-type: none;" class="text-secondary lh-lg list-group mt-3">
           <li><a href="/">Home</a></li>
           <li><a href="">Questions</a></li>
