@@ -9,7 +9,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to cart_url(@line_item.cart), notice: 'Line item was succesfully created.' }
+        format.html { redirect_to root_url }
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -24,7 +24,7 @@ class LineItemsController < ApplicationController
     if @line_item.quantity > 1
       @line_item.quantity -= 1
       @line_item.save
-      redirect_to cart_url(@cart)
+      redirect_to root_url
     else
       @line_item.destroy
       if @cart.line_items.empty?
@@ -36,7 +36,7 @@ class LineItemsController < ApplicationController
           format.json { head :no_content }
         end
       else
-        redirect_to cart_url(@cart)
+        redirect_to root_url
       end
     end
   end

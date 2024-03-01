@@ -1,14 +1,14 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: %i[show destroy]
+  before_action :set_cart, only: %i[destroy] # show
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
-  def show
-    if @cart.id != session[:cart_id]
-      redirect_to root_path, notice: 'Unauthorized cart'
-    else
-      @line_items = @cart.line_items.order('id ASC')
-    end
-  end
+  # def show
+  #   if @cart.id != session[:cart_id]
+  #     redirect_to root_path, notice: 'Unauthorized cart'
+  #   else
+  #     @line_items = @cart.line_items.order('id ASC')
+  #   end
+  # end
 
   def destroy
     @cart.destroy if @cart.id == session[:cart_id]
