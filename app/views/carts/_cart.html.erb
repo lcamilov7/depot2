@@ -1,0 +1,28 @@
+<div id="<%= dom_id cart %>" >
+  <div class="flex-column">
+    <p style="color: green"><%= notice %></p>
+    <h2>Your Pragmatic Cart</h2>
+    <table>
+      <% @line_items.each do |item| %>
+        <tr>
+          <td><%= item.quantity %></td>
+          <td>&times;</td>
+          <td><%= item.product.title %></td>
+          <td><%= number_to_currency(item.total_price) %></td>
+          <td><%= link_to "-", line_item_path(item), data: { turbo_method: :delete }, class: "btn btn-danger" %></td>
+          <td><%= button_to "+", product_line_items_path(item.product), class: "btn btn-success" %></td>
+        </tr>
+      <% end %>
+
+      <tfoot>
+        <tr>
+          <th>Total:</th>
+          <td><%= number_to_currency(@cart.total_price) %></td>
+        </tr>
+      </tfoot>
+    </table>
+      <%= link_to "Empty cart", cart_delete_path, class: "link-success", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      <%= link_to "Back to products", root_path %>
+    </div>
+  </div>
+</div>
