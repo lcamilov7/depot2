@@ -6,6 +6,7 @@ class StoreController < ApplicationController
 
   def index
     @products = Product.order(:title)
+    # Organizamos para que los line items esten siempre en el orden en el que van siendo añadidos al carrito
     @line_items = @cart.line_items.order('id ASC')
   end
 end
